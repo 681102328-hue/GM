@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderCraft - Digital Kitchen & Mini Game</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Prompt', 'sans-serif'] },
+                    colors: { brand: { 500: '#f97316', 600: '#ea580c' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* CSS สไตล์สำหรับแผ่นการ์ดเกม flip */
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-xl font-bold">🍳</div>
+                <span class="text-xl font-bold tracking-wide">OrderCraft</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <a href="#menu-section" class="hover:text-brand-500 font-medium hidden sm:inline">สั่งอาหาร</a>
+                <a href="#game-section" class="bg-brand-500 hover:bg-brand-600 px-3 py-1.5 rounded-full font-semibold transition-all">🎮 เล่นเกมรออาหาร</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full space-y-16">
+        
+        <!-- Menu Section -->
+        <section id="menu-section">
+            <h2 class="text-2xl font-bold mb-6 text-slate-900 flex items-center gap-2">
+                <span>🍳 เมนูอาหารตามสั่งยุคใหม่</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="กระเพราควอนตัม" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold">กระเพราควอนตัม</h3>
+                                <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-md">420 kcal</span>
+                            </div>
+                            <p class="text-slate-500 text-sm mb-4">ซอสอัญชันผัดเข้มข้น เปลี่ยนสีเมื่อบีบมะนาวสด พร้อมกะเพราป่าต้านอนุมูลอิสระ</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-50 mt-auto">
+                        <span class="text-xl font-bold text-slate-900">119 <span class="text-xs text-slate-400 font-normal">บาท</span></span>
+                        <button onclick="openOrderModal('กระเพราควอนตัม', 119)" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">สั่งอาหาร</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80" alt="ข้าวผัดต้มยำ AI Matrix" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold">ข้าวผัดต้มยำ AI Matrix</h3>
+                                <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-md">480 kcal</span>
+                            </div>
+                            <p class="text-slate-500 text-sm mb-4">ข้าวกล้องไรซ์เบอร์รีผัดเครื่องต้มยำสมุนไพร ท็อปด้วยแซลมอนย่างสด</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-50 mt-auto">
+                        <span class="text-xl font-bold text-slate-900">149 <span class="text-xs text-slate-400 font-normal">บาท</span></span>
+                        <button onclick="openOrderModal('ข้าวผัดต้มยำ AI Matrix', 149)" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">สั่งอาหาร</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="สุกี้แห้ง Keto-Future" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold">สุกี้แห้ง Keto-Future</h3>
+                                <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-md">280 kcal</span>
+                            </div>
+                            <p class="text-slate-500 text-sm mb-4">เส้นบุกใยอาหารผัดผักออร์แกนิค ไก่อกหมักนุ่ม และซอสสุกี้คีโตไร้น้ำตาล</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-50 mt-auto">
+                        <span class="text-xl font-bold text-slate-900">129 <span class="text-xs text-slate-400 font-normal">บาท</span></span>
+                        <button onclick="openOrderModal('สุกี้แห้ง Keto-Future', 129)" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">สั่งอาหาร</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mini Game Section -->
+        <section id="game-section" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl">
+            <div class="text-center max-w-xl mx-auto mb-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Mini Game</span>
+                <h2 class="text-2xl font-bold mt-1">🎮 จับคู่เมนูอาหาร (Memory Match)</h2>
+                <p class="text-slate-400 text-sm mt-1">จับคู่การ์ดอาหารให้ครบทุกคู่ เล่นสนุกๆ ระหว่างรอครัวทำอาหาร!</p>
+            </div>
+
+            <div class="flex justify-center items-center gap-6 mb-6 text-sm">
+                <div class="bg-slate-800 px-4 py-2 rounded-xl border border-slate-700">จำนวนครั้งที่เปิด: <span id="flip-count" class="font-bold text-brand-500">0</span></div>
+                <button onclick="resetGame()" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs px-3 py-2 rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> เริ่มใหม่</button>
+            </div>
+
+            <!-- กระดานการ์ด 4x3 -->
+            <div id="game-board" class="grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-md mx-auto">
+                <!-- การ์ดจะถูกสร้างด้วย JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal สั่งซื้อ -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-xl border border-slate-100">
+            <div class="bg-slate-900 text-white p-5 flex justify-between items-center">
+                <h3 id="modal-title" class="font-bold text-lg">ชื่อเมนู</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+
+            <form id="order-form" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">ชื่อผู้สั่ง / เบอร์โทร</label>
+                    <input type="text" id="cust-name" required placeholder="ใส่ชื่อของคุณ" class="w-full px-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">ความเผ็ด</label>
+                    <select id="cust-spicy" class="w-full px-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                        <option value="เผ็ดน้อย">เผ็ดน้อย</option>
+                        <option value="เผ็ดปานกลาง" selected>เผ็ดปานกลาง</option>
+                        <option value="เผ็ดมาก">เผ็ดมาก</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">ท็อปปิ้ง</label>
+                    <div class="space-y-2">
+                        <label class="flex justify-between items-center text-sm">
+                            <span><input type="checkbox" value="ไข่ดาว (+15B)" onchange="calculateTotal()" class="topping-check accent-brand-500"> ไข่ดาวออร์แกนิค</span>
+                            <span class="text-xs text-slate-400">+15 บาท</span>
+                        </label>
+                        <label class="flex justify-between items-center text-sm">
+                            <span><input type="checkbox" value="เพิ่มเนื้อ (+30B)" onchange="calculateTotal()" class="topping-check accent-brand-500"> เพิ่มเนื้อสัตว์ 50%</span>
+                            <span class="text-xs text-slate-400">+30 บาท</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-slate-400 block">ราคารวม</span>
+                        <span class="text-2xl font-bold text-brand-500"><span id="total-price">0</span> <span class="text-xs text-slate-500 font-normal">บาท</span></span>
+                    </div>
+                    <button type="submit" id="submit-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all">ยืนยันการสั่งซื้อ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs border-t border-slate-800">
+        © 2026 OrderCraft Digital Kitchen. Powered by GitHub Pages & Google Sheets API.
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        // ⚠️ อย่าลืมใส่ Web App URL จาก Google Apps Script ของคุณ
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbufZGpN_prs5uC_y_7dTbUhRb2FfjrYWwjjN_0mYrTba8-kXKsBNUQzX5sb_03BJJ/exec';
+
+        let currentMenu = '';
+        let basePrice = 0;
+
+        function openOrderModal(menu, price) {
+            currentMenu = menu;
+            basePrice = price;
+            document.getElementById('modal-title').innerText = menu;
+            document.querySelectorAll('.topping-check').forEach(cb => cb.checked = false);
+            calculateTotal();
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        function calculateTotal() {
+            let total = basePrice;
+            document.querySelectorAll('.topping-check:checked').forEach(cb => {
+                if(cb.value.includes('+15B')) total += 15;
+                if(cb.value.includes('+30B')) total += 30;
+            });
+            document.getElementById('total-price').innerText = total;
+        }
+
+        document.getElementById('order-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'กำลังส่ง...';
+            btn.disabled = true;
+
+            const spicyOption = document.getElementById('cust-spicy').value;
+            let toppings = [];
+            document.querySelectorAll('.topping-check:checked').forEach(cb => toppings.push(cb.value));
+
+            const payload = {
+                customerName: document.getElementById('cust-name').value,
+                menu: currentMenu,
+                customization: `ความเผ็ด: ${spicyOption} | ท็อปปิ้ง: ${toppings.length > 0 ? toppings.join(', ') : 'ไม่มี'}`,
+                price: document.getElementById('total-price').innerText
+            };
+
+            if (GOOGLE_SCRIPT_URL === 'https://docs.google.com/spreadsheets/d/1bLZD0cAjzEpT9mjZ0h_nei3hA4tosaN41KOI1-cjkq8/edit?gid=0#gid=0') {
+                alert('⚠️ สั่งซื้อสำเร็จ (โหมดทดสอบ)\n\nอย่าลืมใส่ URL จาก Google Apps Script เพื่อบันทึกลง Google Sheets จริงนะครับ');
+                closeModal();
+                document.getElementById('order-form').reset();
+                btn.innerText = 'ยืนยันการสั่งซื้อ';
+                btn.disabled = false;
+                return;
+            }
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                alert('🎉 ส่งออเดอร์เรียบร้อยแล้ว!');
+                closeModal();
+                document.getElementById('order-form').reset();
+            } catch (err) {
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล');
+            } finally {
+                btn.innerText = 'ยืนยันการสั่งซื้อ';
+                btn.disabled = false;
+            }
+        });
+
+        // ------------------ MINI GAME LOGIC ------------------
+        const emojis = ['🍳', '🍳', '🥗', '🥗', '🍱', '🍱', '🍤', '🍤', '🍜', '🍜', '🥑', '🥑'];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let flips = 0;
+
+        function initGame() {
+            const board = document.getElementById('game-board');
+            board.innerHTML = '';
+            flippedCards = [];
+            matchedPairs = 0;
+            flips = 0;
+            document.getElementById('flip-count').innerText = flips;
+
+            // สลับตำแหน่งการ์ดแบบสุ่ม
+            const shuffled = [...emojis].sort(() => 0.5 - Math.random());
+
+            shuffled.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'w-full h-20 sm:h-24 relative cursor-pointer perspective';
+                card.innerHTML = `
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-md" data-emoji="${emoji}" data-index="${index}">
+                        <div class="card-front absolute inset-0 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center text-xl text-slate-500 font-bold">❓</div>
+                        <div class="card-back absolute inset-0 bg-brand-500 rounded-2xl flex items-center justify-center text-3xl select-none">${emoji}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => flipCard(card.querySelector('.card-inner')));
+                board.appendChild(card);
+            });
+        }
+
+        function flipCard(cardInner) {
+            if (flippedCards.length >= 2 || cardInner.classList.contains('card-flipped') || cardInner.classList.contains('matched')) return;
+
+            cardInner.classList.add('card-flipped');
+            flippedCards.push(cardInner);
+
+            if (flippedCards.length === 2) {
+                flips++;
+                document.getElementById('flip-count').innerText = flips;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.emoji === card2.dataset.emoji) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                flippedCards = [];
+                
+                if (matchedPairs === emojis.length / 2) {
+                    setTimeout(() => alert(`🎉 ยินดีด้วย! คุณเปิดการ์ดครบทุกคู่ใน ${flips} ครั้ง`), 300);
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('card-flipped');
+                    card2.classList.remove('card-flipped');
+                    flippedCards = [];
+                }, 800);
+            }
+        }
+
+        function resetGame() {
+            initGame();
+        }
+
+        // เริ่มเกมทันทีเมื่อโหลดหน้าเว็บ
+        initGame();
+    </script>
+</body>
+</html>
