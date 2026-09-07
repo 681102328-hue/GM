@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderCraft - Digital Gastronomy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Prompt', 'sans-serif'] },
+                    colors: { brand: { 500: '#f97316', 600: '#ea580c' } }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-xl font-bold">🍳</div>
+                <span class="text-xl font-bold tracking-wide">OrderCraft</span>
+            </div>
+            <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ระบบพร้อมรับออเดอร์
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        <h2 class="text-2xl font-bold mb-6 text-slate-900">เมนูอาหารตามสั่งยุคใหม่</h2>
+
+        <!-- Menu Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <!-- รูปผัดกะเพรา -->
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="กระเพราควอนตัม" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">กระเพราควอนตัม</h3>
+                            <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-md">420 kcal</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4">ซอสอัญชันผัดเข้มข้น เปลี่ยนสีเมื่อบีบมะนาวสด พร้อมกะเพราป่าต้านอนุมูลอิสระ</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-50 mt-auto">
+                    <span class="text-xl font-bold text-slate-900">119 <span class="text-xs text-slate-400 font-normal">บาท</span></span>
+                    <button onclick="openOrderModal('กระเพราควอนตัม', 119, 420)" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">สั่งอาหาร</button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <!-- รูปข้าวผัด -->
+                    <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80" alt="ข้าวผัดต้มยำ AI Matrix" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">ข้าวผัดต้มยำ AI Matrix</h3>
+                            <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-md">480 kcal</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4">ข้าวกล้องไรซ์เบอร์รีผัดเครื่องต้มยำสมุนไพร ท็อปด้วยแซลมอนย่างสด</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-50 mt-auto">
+                    <span class="text-xl font-bold text-slate-900">149 <span class="text-xs text-slate-400 font-normal">บาท</span></span>
+                    <button onclick="openOrderModal('ข้าวผัดต้มยำ AI Matrix', 149, 480)" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">สั่งอาหาร</button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <!-- รูปสุกี้/ผัดผักสุขภาพ -->
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="สุกี้แห้ง Keto-Future" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">สุกี้แห้ง Keto-Future</h3>
+                            <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-md">280 kcal</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4">เส้นบุกใยอาหารผัดผักออร์แกนิค ไก่อกหมักนุ่ม และซอสสุกี้คีโตไร้น้ำตาล</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-50 mt-auto">
+                    <span class="text-xl font-bold text-slate-900">129 <span class="text-xs text-slate-400 font-normal">บาท</span></span>
+                    <button onclick="openOrderModal('สุกี้แห้ง Keto-Future', 129, 280)" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">สั่งอาหาร</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal สั่งซื้อ -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-xl border border-slate-100">
+            <div class="bg-slate-900 text-white p-5 flex justify-between items-center">
+                <h3 id="modal-title" class="font-bold text-lg">ชื่อเมนู</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+
+            <form id="order-form" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">ชื่อผู้สั่ง / เบอร์โทร</label>
+                    <input type="text" id="cust-name" required placeholder="ใส่ชื่อของคุณ" class="w-full px-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">ความเผ็ด</label>
+                    <select id="cust-spicy" class="w-full px-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                        <option value="เผ็ดน้อย">เผ็ดน้อย</option>
+                        <option value="เผ็ดปานกลาง" selected>เผ็ดปานกลาง</option>
+                        <option value="เผ็ดมาก">เผ็ดมาก</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">ท็อปปิ้ง</label>
+                    <div class="space-y-2">
+                        <label class="flex justify-between items-center text-sm">
+                            <span><input type="checkbox" value="ไข่ดาว (+15B)" onchange="calculateTotal()" class="topping-check accent-brand-500"> ไข่ดาวออร์แกนิค</span>
+                            <span class="text-xs text-slate-400">+15 บาท</span>
+                        </label>
+                        <label class="flex justify-between items-center text-sm">
+                            <span><input type="checkbox" value="เพิ่มเนื้อ (+30B)" onchange="calculateTotal()" class="topping-check accent-brand-500"> เพิ่มเนื้อสัตว์ 50%</span>
+                            <span class="text-xs text-slate-400">+30 บาท</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-slate-400 block">ราคารวม</span>
+                        <span class="text-2xl font-bold text-brand-500"><span id="total-price">0</span> <span class="text-xs text-slate-500 font-normal">บาท</span></span>
+                    </div>
+                    <button type="submit" id="submit-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all">ยืนยันการสั่งซื้อ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        // ⚠️ สำคัญ: วาง Web App URL จาก Google Apps Script ของคุณในช่องนี้
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSelXR8mCK2N7IoDKn3I8JBQgpMt2An0n_6VPNgv5KC_PLUQ9BINMqjRDlQtkWUJVx/exec';
+
+        let currentMenu = '';
+        let basePrice = 0;
+
+        function openOrderModal(menu, price) {
+            currentMenu = menu;
+            basePrice = price;
+            document.getElementById('modal-title').innerText = menu;
+            document.querySelectorAll('.topping-check').forEach(cb => cb.checked = false);
+            calculateTotal();
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        function calculateTotal() {
+            let total = basePrice;
+            document.querySelectorAll('.topping-check:checked').forEach(cb => {
+                if(cb.value.includes('+15B')) total += 15;
+                if(cb.value.includes('+30B')) total += 30;
+            });
+            document.getElementById('total-price').innerText = total;
+        }
+
+        document.getElementById('order-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'กำลังส่งออเดอร์...';
+            btn.disabled = true;
+
+            const spicyOption = document.getElementById('cust-spicy').value;
+            let toppings = [];
+            document.querySelectorAll('.topping-check:checked').forEach(cb => toppings.push(cb.value));
+
+            const customizationText = `ความเผ็ด: ${spicyOption} | ท็อปปิ้ง: ${toppings.length > 0 ? toppings.join(', ') : 'ไม่มี'}`;
+            const finalPrice = document.getElementById('total-price').innerText;
+
+            const payload = {
+                customerName: document.getElementById('cust-name').value,
+                menu: currentMenu,
+                customization: customizationText,
+                price: finalPrice
+            };
+
+            // หากยังไม่ได้เปลี่ยน URL จะแจ้งเตือนเพื่อทดสอบระบบหน้าบ้าน
+            if (GOOGLE_SCRIPT_URL === 'https://docs.google.com/spreadsheets/d/1bLZD0cAjzEpT9mjZ0h_nei3hA4tosaN41KOI1-cjkq8/edit?gid=0#gid=0') {
+                alert('⚠️ ส่งข้อมูลสำเร็จ (โหมดทดสอบ)\n\nกรุณาเปลี่ยน YOUR_GOOGLE_APPS_SCRIPT_URL ในโค้ดเป็น URL จริงจาก Google Sheets เพื่อลงฐานข้อมูล');
+                closeModal();
+                document.getElementById('order-form').reset();
+                btn.innerText = 'ยืนยันการสั่งซื้อ';
+                btn.disabled = false;
+                return;
+            }
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                alert('🎉 ส่งออเดอร์เรียบร้อยแล้ว!');
+                closeModal();
+                document.getElementById('order-form').reset();
+            } catch (err) {
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+            } finally {
+                btn.innerText = 'ยืนยันการสั่งซื้อ';
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
